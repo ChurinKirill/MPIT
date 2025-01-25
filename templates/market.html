@@ -1,0 +1,56 @@
+<html lang="ru">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   НЕЙMARKET
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <body class="bg-black font-roboto">
+  <header class="bg-black shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    
+    <span class="gradient"><h1 class="text-2xl font-bold">
+     НЕЙMARKET
+    </h1></span>
+      <div class=" flex items-center space-x-4">
+      <span class="gradient"><div class="account-balance flex items-center space-x-2">
+        <i class="fas fa-user-circle text-2xl">
+       </i>
+       <span class="gradient"><span class="text-lg font-bold">
+        {{ vol }}
+       </span></span>
+      </div>
+     </div>
+   </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+    <div class="cards">
+      {% for product in products %}
+      <div class="card">
+        <div class="imgBx">
+          <img src="{{ product['i'] }}.png">
+        </div>
+        <div class="details">
+          <h3>{{ product['title'] }}<br><span>Оригинальный Мерч</span></h3>
+          <h4>Подробности</h4>
+          <h5>Осталось в наличии</h5>
+          <p>{{ product['amount'] }}</p>
+          <h5>Описание</h5>
+          <p>{{ product['description'] }}</p>
+          <div class="group">
+            <h2><sup></sup><img src="image_2025-01-25_14-54-44.png">{{ product['price'] }}<small></small></h2>
+            <a href="#">Купить</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+	  </div>
+  </main>
+ </body>
+</html>

@@ -40,7 +40,12 @@ class Database:
         self.cursor.execute(query)
         self.conn.commit()
         rows = self.cursor.fetchall()
-        return rows
+        res = []
+        i = 1
+        for row in rows:
+            res.append({'i': i, 'title': row[0], 'amount': row[1], 'description': row[2], 'price': row[3]})
+            i += 1
+        return res
 
 db = Database()
 db.get_user('TestUser', 'gagagager')

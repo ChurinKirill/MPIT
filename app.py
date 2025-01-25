@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 from db_api import Database
 
-app = Flask('НейМакет')
+app = Flask('НейМакет', static_url_path='', static_folder='static')
 db = Database()
 
 current_user = {}
@@ -21,10 +21,13 @@ def start_market():
     for k, v in userinfo.items():
         current_user[k] = v
     
-    products = get_products()
-    
-    return [current_user, products]
-
+    _products = get_products()
+    print(_products)
+    return render_template( 
+        'market.html',
+        vol=current_user['score'],
+        products=_products
+    )
 
 
 
