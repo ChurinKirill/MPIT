@@ -1,0 +1,110 @@
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   НЕЙMARKET
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+</head>
+ <body class="bg-black font-roboto">
+  <header class="bg-black shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+	
+    
+    <span class="gradient"><a href="index.html"><h1 class="text-2xl font-bold">
+     НЕЙMARKET
+    </h1></a></span>
+	<div class="icon-cart">
+		<a href="cart.html"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+			<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+		</svg></a>
+		<span>0</span>
+	</div>
+      <div class=" flex items-center space-x-4">
+      <span class="gradient"><a href="profile.html"><div class="account-balance flex items-center space-x-2">
+        <i class="fas fa-user-circle text-2xl">
+       </i>
+       <span class="gradient"><span class="text-lg font-bold">
+        {{vol}}
+       </span></a></span>
+      </div>
+     </div>
+   </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+	<div class="container">
+	<div class="products">
+	<div class="product">
+	<div class="products">
+	<div class="card">
+		<div class="imgBx">
+		 <img src="93acb67e-ec8c-46ab-beb8-b4996b178b3a_removalai_preview.png">
+		</div>
+		<div class="details">
+		  <h3>{{name1}}<br><span>Оригинальный Мерч</span></h3>
+		  <h4>Подробности</h4>
+		  <p class = "pc">Универсальные подставки под телефон от IT-кампуса НЕЙМАРК</p>
+		  <h4>Размер</h4>
+		  <ul class="size">
+			  <li>S</li>
+			  <li>M</li>
+			  <li>L</li>
+			  <li>XL</li>
+			  <li>XXL</li>
+		  </ul>
+		  <div class="group">
+			  <h2><sup></sup><img src="image_2025-01-25_14-54-44.png">{{price1}}<small></small></h2>
+			  <div class="products"><div class="product" data-id="1" data-name="{{name1}}" data-price="{{price1}}">
+				<button onclick="addToCart(1)"><a href="#">Купить</a></button></div></div>
+		</div>
+		</div>
+		</div>
+		</div>
+
+
+		
+		<div class="card2">
+		 <div class="imgBx">
+		  <img src="bottle.png">
+		 </div>
+		 <div class="details">
+		   <h3>{{name2}}<br><span>Оригинальный Мерч</span></h3>
+		   <h4>Подробности</h4>
+		   <p>Удобная, спортивная бутылка от IT-кампуса НЕЙМАРК</p>
+		   <h4>Размер</h4>
+		   <ul class="size">
+			 <li>S</li>
+			 <li>B</li>
+			</ul>
+		  <div class="group">
+			<h2><sup></sup><img src="image_2025-01-25_14-54-44.png">{{price2}}<small></small></h2>
+			<div class="product" data-id="2" data-name="{{name2}}" data-price="{{price2}}">
+				<button onclick="addToCart(2)"><a>Купить</a><button>
+			 </div>
+			
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+  </main>
+  <div class="marquee">
+        <div class="marquee-container">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 1">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 2">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 3">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+        </div>
+    </div>
+   </div>	
+   <script src="scriptcart.js"></script>
+ </body>
+</html>

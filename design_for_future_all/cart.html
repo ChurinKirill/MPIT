@@ -1,0 +1,57 @@
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   НЕЙMARKET
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link rel="stylesheet" type="text/css" href="stylecrat.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+</head>
+ <body class="bg-black font-roboto">
+  <header class="bg-black shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+	
+    
+    <span class="gradient"><a href="index.html"><h1 class="text-2xl font-bold">
+     НЕЙMARKET
+    </h1></a></span>
+      <div class=" flex items-center space-x-4">
+      <span class="gradient"><a href="profile.html"><div class="account-balance flex items-center space-x-2">
+        <i class="fas fa-user-circle text-2xl">
+       </i>
+       <span class="gradient"><span class="text-lg font-bold">
+        {{vol}}
+       </span></a></span>
+      </div>
+     </div>
+   </div>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+    <div class="container">
+        <h1>Ваша корзина</h1>
+        <div id="cart-items"></div>
+        <p id="total-price">Общая сумма: 0 ₽</p>
+        <button onclick="clearCart()">Очистить корзину</button>
+    </div>
+    <script src="scriptcart.js"></script>
+    
+  </main>
+  <div class="marquee">
+        <div class="marquee-container">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 1">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 2">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 3">
+            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+        </div>
+    </div>
+   </div>	
+   <script src="scriptcart.js"></script>
+ </body>
+</html>
