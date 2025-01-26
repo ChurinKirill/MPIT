@@ -13,23 +13,31 @@ class Database:
         self.conn = psycopg2.connect(dbname='mpit_neimarkmerch', user='postgres', password='123', host='localhost', port=5432)
         self.cursor = self.conn.cursor()
 
-    def get_user(self, name, tg, pwd):
+    def update_score(self, uid, score):
         query = f"""
-        SELECT uname, uage, uscore
+        update users
+        set uscore = {score}
+        where id = '{uid}'"""
+        self.cursor.execute(query)
+        self.conn.commit()
+
+    def get_user(self, login, pwd):
+        query = f"""
+        SELECT id, uname, uage, uscore, login
         FROM users
-        WHERE uname='{name}' AND utg_username='{tg}' AND pwd='{pwd}';"""
+        WHERE login='{login}' AND pwd='{pwd}';"""
         self.cursor.execute(query)
         self.conn.commit()
         rows = self.cursor.fetchall()
         if len(rows) == 0:
             return {'ok': False}
-        return {'ok': True, 'name': rows[0][0], 'age': rows[0][1], 'score': rows[0][2]}
+        return {'ok': True, 'id': rows[0][0], 'name': rows[0][1], 'age': rows[0][2], 'score': rows[0][3], 'login':rows[0][4]}
     
-    def get_adm(self, name, tg, pwd):
+    def get_adm(self, name, pwd):
         query = f"""
         SELECT name
         FROM admins
-        WHERE name='{name}' AND atg_username='{tg}' AND pwd='{pwd}'"""
+        WHERE name='{name}' AND pwd='{pwd}'"""
         self.cursor.execute(query)
         self.conn.commit()
         rows = self.cursor.fetchall()
@@ -37,7 +45,7 @@ class Database:
             return {'ok': False}
         return {'ok': True, 'name': rows[0][0]}
 
-    def add_user(self, name, tg, pwd):
+    def add_user(self, name, login, pwd):
         query = f"""
         SELECT utg_username
         FROM users;"""
@@ -51,8 +59,8 @@ class Database:
                 break
         if valid:
             query = f"""
-            INSERT INTO users (uname, uage, uscore, utg_username, pwd, verified)
-            VALUES ('{name}', 0, 50, '{tg}', '{pwd}', 0);"""
+            INSERT INTO users (uname, uage, uscore, login, pwd, verified)
+            VALUES ('{name}', 0, 50, '{login}', '{pwd}', 0);"""
             self.cursor.execute(query)
             self.conn.commit()
             return {'ok': True}
@@ -85,7 +93,7 @@ class Database:
     
     def get_users(self):
         query = f"""
-        SELECT (uname, uage, utg_username, uscore, verified)
+        SELECT (uname, uage, login, uscore, verified)
         FROM users
         ORDER BY verified"""
         self.cursor.execute()
@@ -112,6 +120,33 @@ class Database:
         for row in rows:
             res.append({'pname': row[1], 'amount': row[2], 'price': row[3]})
         return res
+    
+    def get_basket_val(self, name):
+        query = f"""
+        select
+            sum(products.price)
+        from basket
+        inner join users on basket.uid = users.id
+        inner join products on basket.pid = products.id
+        where users.uname = '{name}';"""
+        self.cursor.execute(query)
+        self.conn.commit()
+        return self.cursor.fetchall()[0][0]
+    
+    def add_to_basket(self, uid, pid):
+        query = f"""
+        insert into basket (uid, pid)
+        values ({uid}, {pid});"""
+        self.cursor.execute(query)
+        self.conn.commit()
+    
+    def clear_basket(self, uid):
+        query = f"""
+        delete from basket
+        where uid={uid};"""
+        self.cursor.execute(query)
+        self.conn.commit()
+
 
 
 

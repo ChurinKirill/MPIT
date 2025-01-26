@@ -24,7 +24,7 @@ def log_reg():
 @app.route('/reg', methods=['POST'])
 def reg():
     name = request.form['name_reg']
-    tg = request.form['tg_reg']
+    tg = request.form['login_reg']
     pwd = request.form['pwd_reg']
 
     res = db.add_user(name, tg, pwd)
@@ -41,17 +41,16 @@ def reg():
 
 @app.route('/log', methods=['POST'])
 def log():
-    name = request.form['name_log']
-    tg = request.form['tg_log']
+    login = request.form['login_log']
     pwd = request.form['pwd_log']
 
-    res = db.get_adm(name, tg, pwd)
+    res = db.get_adm(login, pwd)
     if res['ok']:
         current_user['is_adm'] = True
         current_user['name'] = res['name']
         return app.redirect('/market')
     else:
-        res = db.get_user(name, tg, pwd)
+        res = db.get_user(login, pwd)
         if res['ok']:
             for k, v in res.items():
                 current_user[k] = v
@@ -72,13 +71,46 @@ def start_market():
 @app.route('/basket')
 def basket():
     products = db.get_basket(current_user['name'])
+    total_p = db.get_basket_val(current_user['name'])
     return render_template(
         'cart.html',
         card_items=products,
-        vol=current_user['score']
+        vol=current_user['score'],
+        total_amount=len(products),
+        total_price = total_p
+        )
+
+@app.route('/profile')
+def profile():
+    return render_template(
+        'profile.html',
+        vol=current_user['score'],
+        name=current_user['name'],
+        login=current_user['login']
     )
 
+@app.route('/buy')
+def buy():
+    id = request.args.get('id')
+    db.add_to_basket(current_user['id'], id)
+    return app.redirect('/market')
+
+@app.route('/clear')
+def clear_basket():
+    db.clear_basket(current_user['id'])
+    return app.redirect('/basket')
+
+@app.route('/buy_all')
+def buy_all():
+    total_p = db.get_basket_val(current_user['name'])
+    if total_p > current_user['score']:
+        gnev_msg = 'На балансе недостаточно НейМарков'
+        return app.redirect('/basket')
+    current_user['score'] -= total_p
+    db.update_score(current_user['id'], current_user['score'])
+    return app.redirect('/clear')
 
 
 
-app.run(debug=True)
+
+app.run(debug=True, host='0.0.0.0')

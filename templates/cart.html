@@ -16,11 +16,11 @@
    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
 	
     
-    <span class="gradient"><a href="index.html"><h1 class="text-2xl font-bold">
+    <span class="gradient"><a href="/market"><h1 class="text-2xl font-bold">
      НЕЙMARKET
     </h1></a></span>
       <div class=" flex items-center space-x-4">
-      <span class="gradient"><a href="profile.html"><div class="account-balance flex items-center space-x-2">
+      <span class="gradient"><a href="/profile"><div class="account-balance flex items-center space-x-2">
         <i class="fas fa-user-circle text-2xl">
        </i>
        <span class="gradient"><span class="text-lg font-bold">
@@ -38,14 +38,14 @@
             <div class="cart-item">
               <span>{{ item['pname'] }}</span>
               <span>Осталось в наличии: {{ item['amount'] }}</span>
-              <span>{{ item['price'] }}</span>
+              <span>{{ item['price'] }} НМ</span>
             </div>
           {% endfor %}
         </div>
         <div class="additional-info">
           <p id="total-amount">Всего товаров: {{ total_amount }}</p>
           <p id="total-price">Общая сумма: {{ total_price }} НМ</p>
-          <form action="/clear_basket">
+          <form action="/clear">
             <button class="basket-button" type="submit">Очистить корзину</button>
           </form>
           <form action="/buy_all">
@@ -57,17 +57,16 @@
     
   </main>
   <div class="marquee">
-        <div class="marquee-container">
-            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 1">
-            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 2">
-            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 3">
-            <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
-			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
-			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
-			<img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
-        </div>
+    <div class="marquee-container">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 1">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 2">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 3">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
+      <img src="Screenshot_5-no-bg-preview (carve.photos).png" alt="Image 4">
     </div>
-   </div>	
-   <script src="scriptcart.js"></script>
+  </div>	
+  <script src="scriptcart.js"></script>
  </body>
 </html>

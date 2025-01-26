@@ -57,9 +57,10 @@
           <h5>Описание</h5>
           <p>{{ product['description'] }}</p>
           <div class="group">
-            <h2><sup></sup>{{ product['price'] }}<img src="image_2025-01-25_14-54-44.png"><small></small></h2>
-            <form action="">
-              <a href="#">Купить</a>
+            <h3 style="display: flex; flex-direction: row;"><sup></sup>{{ product['price'] }}<img src="image_2025-01-25_14-54-44.png"><small></small></h3>
+            <form action="/buy">
+              <input type="hidden" name="id" value="{{ product['pid'] }}" />
+              <button class="add-tocard" type="submit">КУПИТЬ</button>
             </form>
           </div>
         </div>

@@ -211,7 +211,7 @@ p
 {
 	position: relative;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin-top: 20px;
 	align-items: center;
 }
@@ -241,6 +241,14 @@ p
 	font-weight: 600;
 	color:linear-gradient(to right, #164f99, #d75446);
 }
+
+.add-tocard
+{
+	color: white;
+	scale: 150%;
+}
+
+
 .account-balance {
     border: 2px solid #E5E7EB;
     border-radius: 50px;

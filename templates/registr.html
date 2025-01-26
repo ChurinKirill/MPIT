@@ -21,7 +21,7 @@
 
 <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" action="http://127.0.0.1:5000/reg" style="background-color: dimgray;">
+            <form method="post" action="/reg" style="background-color: #ffffff1f;">
                 <h1>Регистрация</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -30,13 +30,13 @@
                 </div>
                 <span>или используйте свой E-mail для регистрации</span> -->
                 <input type="text" placeholder="Имя" name="name_reg" />
-                <input type="text" placeholder="Логин Телеграм" name="tg_reg" />
+                <input type="text" placeholder="Логин" name="login_reg" />
                 <input type="password" placeholder="Пароль" name="pwd_reg" />
                 <button type="submit">Зарегистрироваться</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form method="post" action="http://127.0.0.1:5000/log">
+            <form method="post" action="/log">
                 <h1 style="color: white;">Авторизация</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -44,8 +44,7 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>или используйте свой аккаунт</span> -->
-                <input type="text" placeholder="Имя" name="name_log" />
-                <input type="text" placeholder="Логин Телеграм" name="tg_log" />
+                <input type="text" placeholder="Логин" name="login_log" />
                 <input type="password" placeholder="Пароль" name="pwd_log" />
                 <p style="color: red;">{{ gnev_message }}</p>
                 <!-- <a href="#">Забыли пароль?</a> -->
