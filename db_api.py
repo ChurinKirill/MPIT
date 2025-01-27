@@ -47,14 +47,14 @@ class Database:
 
     def add_user(self, name, login, pwd):
         query = f"""
-        SELECT utg_username
+        SELECT login
         FROM users;"""
         self.cursor.execute(query)
         self.conn.commit()
         rows = self.cursor.fetchall()
         valid = True
         for row in rows:
-            if tg == row[0]:
+            if login == row[0]:
                 valid = False
                 break
         if valid:

@@ -24,14 +24,15 @@ def log_reg():
 @app.route('/reg', methods=['POST'])
 def reg():
     name = request.form['name_reg']
-    tg = request.form['login_reg']
+    login = request.form['login_reg']
     pwd = request.form['pwd_reg']
 
-    res = db.add_user(name, tg, pwd)
+    res = db.add_user(name, login, pwd)
 
     if res['ok']:
         current_user['is_adm'] = False
         current_user['name'] = name
+        current_user['login'] = login
         current_user['age'] = 0
         current_user['score'] = 50
         return app.redirect('/market')
