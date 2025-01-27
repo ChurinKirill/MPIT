@@ -30,11 +30,10 @@ def reg():
     res = db.add_user(name, login, pwd)
 
     if res['ok']:
-        current_user['is_adm'] = False
-        current_user['name'] = name
-        current_user['login'] = login
-        current_user['age'] = 0
-        current_user['score'] = 50
+        res = db.get_user(login, pwd)
+        if res['ok']:
+            for k, v in res.items():
+                current_user[k] = v
         return app.redirect('/market')
     return render_template('registr.html', gnev_message='Пользователь с таким Телеграмом уже зарегистрирован')
 
