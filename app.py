@@ -1,12 +1,13 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import make_response
 from db_api import Database
 
 app = Flask('НейМакет', static_url_path='', static_folder='static')
 db = Database()
 
-current_user = {}
+current_user = {'logged': False}
 
 def update_score():
     scoreupd = db.get_user('TestUser')
@@ -35,6 +36,7 @@ def reg():
             for k, v in res.items():
                 current_user[k] = v
         return app.redirect('/market')
+    current_user['logged'] = True
     return render_template('registr.html', gnev_message='Пользователь с таким Телеграмом уже зарегистрирован')
 
 
@@ -48,18 +50,22 @@ def log():
     if res['ok']:
         current_user['is_adm'] = True
         current_user['name'] = res['name']
+        current_user['logged'] = True
         return app.redirect('/market')
     else:
         res = db.get_user(login, pwd)
         if res['ok']:
             for k, v in res.items():
                 current_user[k] = v
+            current_user['logged'] = True
             return app.redirect('/market')
         else:
             return render_template('registr.html', gnev_message='Неверное имя или пароль') # возврат к странице входа
 
 @app.route('/market')
-def start_market():    
+def start_market():
+    if not current_user['logged']:
+        return app.redirect('/')
     _products = get_products()
     # print(_products)
     return render_template( 
@@ -70,6 +76,8 @@ def start_market():
 
 @app.route('/basket')
 def basket():
+    if not current_user['logged']:
+        return app.redirect('/')
     products = db.get_basket(current_user['name'])
     total_p = db.get_basket_val(current_user['name'])
     return render_template(
@@ -82,6 +90,8 @@ def basket():
 
 @app.route('/profile')
 def profile():
+    if not current_user['logged']:
+        return app.redirect('/')
     return render_template(
         'profile.html',
         vol=current_user['score'],
@@ -91,17 +101,23 @@ def profile():
 
 @app.route('/buy')
 def buy():
+    if not current_user['logged']:
+        return app.redirect('/')
     id = request.args.get('id')
     db.add_to_basket(current_user['id'], id)
     return app.redirect('/market')
 
 @app.route('/clear')
 def clear_basket():
+    if not current_user['logged']:
+        return app.redirect('/')
     db.clear_basket(current_user['id'])
     return app.redirect('/basket')
 
 @app.route('/buy_all')
 def buy_all():
+    if not current_user['logged']:
+        return app.redirect('/')
     total_p = db.get_basket_val(current_user['name'])
     if total_p > current_user['score']:
         gnev_msg = 'На балансе недостаточно НейМарков'
